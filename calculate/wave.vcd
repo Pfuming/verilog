@@ -1,0 +1,64 @@
+$date
+	Sat Feb  7 11:34:19 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module tb_arithmetic $end
+$var wire 8 ! result [7:0] $end
+$var reg 8 " a [7:0] $end
+$var reg 8 # b [7:0] $end
+$var reg 2 $ sel [1:0] $end
+$scope module u1 $end
+$var wire 8 % a [7:0] $end
+$var wire 8 & b [7:0] $end
+$var wire 2 ' sel [1:0] $end
+$var reg 8 ( result [7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b10 (
+b0 '
+b1 &
+b1 %
+b0 $
+b1 #
+b1 "
+b10 !
+$end
+#200
+b11 !
+b11 (
+b1 $
+b1 '
+b10 #
+b10 &
+b101 "
+b101 %
+#400
+b110 !
+b110 (
+b10 $
+b10 '
+b11 #
+b11 &
+b10 "
+b10 %
+#600
+b100 !
+b100 (
+b11 $
+b11 '
+b10 #
+b10 &
+b1000 "
+b1000 %
+#800

@@ -1,0 +1,31 @@
+# 读取设计
+
+# 高层次综合流程
+hierarchy -check 
+proc                                 # 转换过程块为逻辑门
+opt                                  # 优化
+fsm                                  # 提取和优化状态机（本例中没有）
+opt
+memory                               # 转换 memory 为逻辑门（本例中没有）
+opt
+
+# 展平并再次优化
+flatten
+opt -full
+
+# 技术映射到标准逻辑单元
+techmap
+opt
+
+# 映射到 FPGA 架构（示例：Xilinx 7系列）
+# 如果要用 FPGA，取消下面行的注释：
+# synth_xilinx -family xc7
+
+# 统计资源使用
+stat
+
+# 输出结果
+write_verilog netlist.v
+
+# 生成可视化图表（需要 graphviz）
+show -format dot -prefix graph -colors 1 -stretch
