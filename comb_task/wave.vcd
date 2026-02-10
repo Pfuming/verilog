@@ -1,0 +1,95 @@
+$date
+	Tue Feb 10 12:37:42 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module comb_task_test_v $end
+$var wire 3 ! sum [0:2] $end
+$var wire 1 " cout $end
+$var reg 1 # cin $end
+$var reg 3 $ dina [0:2] $end
+$var reg 3 % dinb [0:2] $end
+$scope module ul $end
+$var wire 1 # cin $end
+$var wire 3 & dina [2:0] $end
+$var wire 3 ' dinb [2:0] $end
+$var wire 1 " cout $end
+$var reg 4 ( c_temp [3:0] $end
+$var reg 3 ) sum [2:0] $end
+$var integer 32 * J [31:0] $end
+$scope task one_bit_full_adder $end
+$var reg 1 + A $end
+$var reg 1 , B $end
+$var reg 1 - CarryIn $end
+$var reg 1 . CarryOut $end
+$var reg 1 / Sum $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+0/
+0.
+0-
+0,
+0+
+b11 *
+b0 )
+b0 (
+b0 '
+b0 &
+b0 %
+b0 $
+0#
+0"
+b0 !
+$end
+#100000
+b110 !
+b110 )
+1/
+0-
+b10 (
+0.
+1,
+0+
+b11 *
+b101 %
+b101 '
+b1 $
+b1 &
+#200000
+1"
+b10 !
+b10 )
+0+
+1.
+0/
+1-
+b11 *
+b1111 (
+b111 %
+b111 '
+b10 $
+b10 &
+1#
+#300000
+0"
+b111 (
+b110 !
+b110 )
+0.
+0,
+1/
+0+
+b11 *
+b11 %
+b11 '

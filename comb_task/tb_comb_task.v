@@ -1,0 +1,19 @@
+`timescale 1ns/1ps
+module comb_task_test_v;
+reg [0:2] dina;
+reg [0:2] dinb;
+reg cin;
+wire [0:2] sum;
+wire cout;
+
+initial begin
+   $dumpfile("wave.vcd");
+   $dumpvars(0, comb_task_test_v);
+    dina=0;    dinb=0;    cin=0;
+    #100;    dina=3'b001;   dinb=3'b101;
+    #100;    cin=1;    dina=3'b010;   dinb=3'b111;
+    #100;    cin=1;    dina=3'b010;   dinb=3'b011;
+end
+
+comb_task ul(.dina(dina), .dinb(dinb), .cin(cin), .sum(sum), .cout(cout));
+endmodule
