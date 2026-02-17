@@ -1,0 +1,99 @@
+module eight_rainbow_light(
+		       clk,
+		       rst,
+		       control,
+		       dout);
+   input clk;
+   input rst;
+   input control;
+   output reg [7:0] dout;
+   // Mode A states
+parameter A0 = 4'd0, A1=4'd1, A2=4'd2, A3=4'd3,
+          A4=4'd4, A5=4'd5, A6=4'd6, A7=4'd7,
+          A8=4'd8, A9=4'd9, A10=4'd10, A11=4'd11,
+          A12=4'd12, A13=4'd13, A14=4'd14, A15=4'd15;
+   // Mode B states
+   parameter B0 = 2'b0;
+   parameter B1 = 2'b1;
+   parameter B2 = 2'b10;
+   reg [3:0] state_a, next_state_a;
+   reg	[1:0]     state_b, next_state_b;
+
+   // 状态更新（使用双边沿触发）
+always @(posedge clk or negedge clk or posedge rst) begin
+    if (rst) begin
+        state_a <= A15;
+        state_b <= B2;
+        dout <= 8'b00000000;
+    end else begin
+        if (control) begin
+            // Mode A: 使用双边沿更新
+            state_a <= next_state_a;
+            // 根据状态设置输出
+            case (state_a)  
+                A0:  dout <= 8'b00000001;
+                A1:  dout <= 8'b00000011;
+                A2:  dout <= 8'b00000111;
+                A3:  dout <= 8'b00001111;
+                A4:  dout <= 8'b00011111;
+                A5:  dout <= 8'b00111111;
+                A6:  dout <= 8'b01111111;
+                A7:  dout <= 8'b11111111;
+                A8:  dout <= 8'b11111110;
+                A9:  dout <= 8'b11111100;
+                A10: dout <= 8'b11111000;
+                A11: dout <= 8'b11110000;
+                A12: dout <= 8'b11100000;
+                A13: dout <= 8'b11000000;
+                A14: dout <= 8'b10000000;
+                A15: dout <= 8'b00000000;
+                default: dout <= 8'b00000000;
+            endcase
+        end else begin
+            // Mode B: 使用双边沿更新
+            state_b <= next_state_b;
+            // 根据状态设置输出
+            case (state_b)
+              B0: dout <= 8'b01010101;
+              B1: dout <= 8'b10101010;
+	      B2: dout <= 8'b0000_0000;	      
+              default: dout <= 8'b0000_0000;
+            endcase
+        end
+    end
+end
+
+// 组合逻辑计算下一状态
+always @(*) begin
+    if (control) begin
+        // Mode A 下一状态
+        case (state_a)
+            A0:  next_state_a = A1;
+            A1:  next_state_a = A2;
+            A2:  next_state_a = A3;
+            A3:  next_state_a = A4;
+            A4:  next_state_a = A5;
+            A5:  next_state_a = A6;
+            A6:  next_state_a = A7;
+            A7:  next_state_a = A8;
+            A8:  next_state_a = A9;
+            A9:  next_state_a = A10;
+            A10: next_state_a = A11;
+            A11: next_state_a = A12;
+            A12: next_state_a = A13;
+            A13: next_state_a = A14;
+            A14: next_state_a = A15;
+            A15: next_state_a = A0;
+            default: next_state_a = A15;
+        endcase
+    end else begin
+        // Mode B 下一状态
+        case (state_b)
+	  B2:next_state_b  = B0;	  
+          B0: next_state_b = B1;
+          B1: next_state_b = B0;
+          default: next_state_b = B2;
+        endcase
+    end // else: !if(control)
+end // always @ (*)
+endmodule
